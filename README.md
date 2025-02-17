@@ -10,8 +10,6 @@ Este repositório contém o projeto **Desafio Revvo**, desenvolvido em **PHP pur
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Estrutura de Pastas](#estrutura-de-pastas)
 - [Como Executar](#como-executar)
-- [Funcionalidades](#funcionalidades)
-- [Contato](#contato)
 
 ---
 
