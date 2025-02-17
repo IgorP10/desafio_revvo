@@ -1,12 +1,9 @@
 <?php
-// Caminho: admin/cursos/edit.php
 
-require_once '../../includes/sqlite.php'; // Ajuste o caminho se necessário
+require_once '../../includes/sqlite.php';
 
-// 1. Pega o ID via GET
 $id = $_GET['id'] ?? 0;
 
-// 2. Busca os dados do curso
 $stmt = $conn->prepare("SELECT * FROM cursos WHERE id = :id");
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $stmt->execute();
@@ -17,13 +14,11 @@ if (!$curso) {
     exit;
 }
 
-// 3. Se for POST, processa a atualização
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'] ?? '';
     $descricao = $_POST['descricao'] ?? '';
-    $nomeImagem = $curso['imagem']; // Mantém a imagem antiga por padrão
+    $nomeImagem = $curso['imagem'];
 
-    // Verifica se enviou nova imagem
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
         $nomeImagem = $_FILES['imagem']['name'];
         $destino = __DIR__ . '/../../assets/images/' . $nomeImagem;
@@ -45,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updateStmt->execute();
 
         $mensagem = "Curso atualizado com sucesso!";
-        // Atualiza o array $curso para refletir as mudanças na tela
         $curso['nome'] = $nome;
         $curso['descricao'] = $descricao;
         $curso['imagem'] = $nomeImagem;
@@ -67,7 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="wrapper">
 
-        <!-- HEADER (similar ao index.php) -->
         <header class="header">
             <div class="header-container">
                 <div class="logo">
@@ -76,7 +69,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </a>
                 </div>
                 <div class="user-info">
-                    <!-- Avatar circular -->
                     <img src="../../assets/images/profile.jpg" alt="Avatar" class="profile-pic">
                     <span class="user-name">Igor Pereira</span>
                     <span class="dropdown-arrow">▼</span>
@@ -84,11 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </header>
 
-        <!-- CONTEÚDO PRINCIPAL -->
         <main class="main-content form-page">
             <h2>Editar Curso</h2>
 
-            <!-- Exibe mensagens de sucesso ou erro, se houver -->
             <?php if (isset($mensagem)): ?>
                 <div class="alert success"><?php echo $mensagem; ?></div>
             <?php endif; ?>
@@ -129,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </main>
 
-        <!-- FOOTER (similar ao index.php) -->
         <footer class="footer">
             <div class="footer-content">
                 <div class="logo-footer">
@@ -149,7 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </footer>
 
-    </div> <!-- .wrapper -->
+    </div>
 </body>
 
 </html>

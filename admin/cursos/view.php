@@ -24,14 +24,12 @@ if (!$curso) {
 <head>
     <meta charset="UTF-8">
     <title>Visualizar Curso</title>
-    <!-- Reaproveite o mesmo arquivo CSS do index -->
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 
 <body>
     <div class="wrapper">
 
-        <!-- HEADER (igual ao index.php) -->
         <header class="header">
             <div class="header-container">
                 <div class="logo">
@@ -40,7 +38,6 @@ if (!$curso) {
                     </a>
                 </div>
                 <div class="user-info">
-                    <!-- Avatar circular -->
                     <img src="../../assets/images/profile.jpg" alt="Avatar" class="profile-pic">
                     <span class="user-name">Igor Pereira</span>
                     <span class="dropdown-arrow">▼</span>
@@ -48,19 +45,15 @@ if (!$curso) {
             </div>
         </header>
 
-        <!-- CONTEÚDO PRINCIPAL -->
         <main class="main-content form-page">
             <h2>Detalhes do Curso</h2>
 
-            <!-- Container para agrupar os dados do curso -->
             <div class="form-container">
-                <!-- Nome do Curso -->
                 <div class="form-group">
                     <label>Nome do Curso:</label>
                     <p><?php echo htmlspecialchars($curso['nome']); ?></p>
                 </div>
 
-                <!-- Imagem do Curso -->
                 <div class="form-group">
                     <label>Imagem:</label>
                     <?php if (!empty($curso['imagem'])): ?>
@@ -71,19 +64,14 @@ if (!$curso) {
                     <?php endif; ?>
                 </div>
 
-                <!-- Descrição do Curso -->
                 <div class="form-group">
                     <label>Descrição:</label>
                     <p><?php echo nl2br(htmlspecialchars($curso['descricao'])); ?></p>
                 </div>
 
-                <!-- Botões de ação -->
                 <div class="button-group">
-                    <!-- Botão para editar -->
                     <a href="edit.php?id=<?php echo $curso['id']; ?>" class="btn btn-primary">Editar</a>
-                    <!-- Botão para voltar ao index -->
                     <a href="../../index.php" class="btn btn-secondary">Voltar</a>
-                    <!-- Botão para deletar (com confirmação em JS) -->
                     <a href="delete.php?id=<?php echo $curso['id']; ?>" class="btn btn-danger"
                         onclick="return confirm('Deseja realmente excluir este curso?')">
                         Deletar
@@ -93,7 +81,6 @@ if (!$curso) {
             </div>
         </main>
 
-        <!-- FOOTER (igual ao index.php) -->
         <footer class="footer">
             <div class="footer-content">
                 <div class="logo-footer">
@@ -113,7 +100,7 @@ if (!$curso) {
             </div>
         </footer>
 
-    </div> <!-- .wrapper -->
+    </div>
 </body>
 
 </html>

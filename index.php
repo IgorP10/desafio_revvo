@@ -1,12 +1,11 @@
 <?php
+
 require_once 'includes/sqlite.php';
 
-// Consulta slides
 $slideshowQuery = "SELECT * FROM slideshow ORDER BY id DESC";
 $stmtSlides = $conn->query($slideshowQuery);
 $slides = $stmtSlides->fetchAll(PDO::FETCH_ASSOC);
 
-// Consulta cursos
 $cursosQuery = "SELECT * FROM cursos ORDER BY id DESC";
 $stmtCursos = $conn->query($cursosQuery);
 $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
@@ -15,7 +14,7 @@ $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>LEO - Página Inicial</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -23,22 +22,17 @@ $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="wrapper">
 
-        <!-- HEADER -->
         <header class="header">
             <div class="header-container">
-                <!-- LOGO -->
                 <div class="logo">
                     <img src="assets/images/logo-leo.png" alt="Logo LEO">
                 </div>
 
-                <!-- SEARCH BAR -->
                 <div class="search-bar">
                     <input type="text" placeholder="Pesquisar cursos...">
                 </div>
 
-                <!-- USER INFO -->
                 <div class="user-info">
-                    <!-- Avatar circular -->
                     <img src="assets/images/profile.jpg" alt="Avatar" class="profile-pic">
                     <span class="user-name">Igor Pereira</span>
                     <span class="dropdown-arrow">▼</span>
@@ -50,7 +44,6 @@ $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
         <!-- SLIDESHOW -->
         <section class="slideshow">
             <div class="slideshow-container">
-                <!-- Exemplo: se houver slides -->
                 <?php if (count($slides) > 0): ?>
                     <?php foreach ($slides as $index => $slide): ?>
                         <div class="slide">
@@ -65,7 +58,6 @@ $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
                         </div>
                     <?php endforeach; ?>
 
-                    <!-- Botões de navegação -->
                     <a class="prev">&#10094;</a>
                     <a class="next">&#10095;</a>
 
@@ -80,7 +72,6 @@ $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
             <h2>Meus Cursos</h2>
             <div class="courses-grid">
                 <?php if (count($cursos) > 0): ?>
-                    <!-- Percorre todos os cursos -->
                     <?php foreach ($cursos as $curso): ?>
                         <div class="course-card">
                             <?php if (!empty($curso['imagem'])): ?>
@@ -139,7 +130,7 @@ $cursos = $stmtCursos->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
 
-    </div> <!-- .wrapper -->
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 

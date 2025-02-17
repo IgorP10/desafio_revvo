@@ -5,7 +5,6 @@ try {
     $conn = new PDO("sqlite:" . $dbFile);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Criação das tabelas
     $conn->exec("
         CREATE TABLE IF NOT EXISTS cursos (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,7 +22,6 @@ try {
         );
     ");
 
-    // Insere 3 cursos se a tabela estiver vazia
     $stmtCursos = $conn->query("SELECT COUNT(*) as count FROM cursos");
     $rowCursos = $stmtCursos->fetch(PDO::FETCH_ASSOC);
     if ($rowCursos['count'] == 0) {
@@ -35,11 +33,9 @@ try {
             ('Curso 3', 'Descrição do curso 3', 'curso.jpg');");
     }
 
-    // Insere 3 slides se a tabela estiver vazia
     $stmtSlides = $conn->query("SELECT COUNT(*) as count FROM slideshow");
     $rowSlides = $stmtSlides->fetch(PDO::FETCH_ASSOC);
     if ($rowSlides['count'] == 0) {
-        // Supondo que os IDs dos cursos serão 1, 2 e 3
         $conn->exec("INSERT INTO slideshow (titulo, descricao, link, imagem) VALUES 
             ('Slide 1', 'Descrição do slide 1', 'http://localhost:8080/admin/cursos/view.php?id=1', 'slide1.jpg');");
         $conn->exec("INSERT INTO slideshow (titulo, descricao, link, imagem) VALUES 
